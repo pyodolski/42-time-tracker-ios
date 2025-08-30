@@ -432,7 +432,7 @@ export default function Dashboard() {
               <p className="text-2xl font-bold">{formatWorkingHours(adjustedTotalPlannedHours)}</p>
             </div>
             <div className="bg-purple-50 p-4 rounded-lg">
-              <p className="text-gray-600">100시간 기준 남은 시간</p>
+              <p className="text-gray-600">남은 시간</p>
               <p className="text-2xl font-bold">
                 {totalWorkingHours >= 100 
                   ? '0시간 0분'

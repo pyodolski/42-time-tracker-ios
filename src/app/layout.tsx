@@ -3,12 +3,27 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import { AuthProvider } from '@/context/AuthContext';
+import PWAInstaller from '@/components/PWAInstaller';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Time Tracker',
-  description: 'Track your time efficiently with Time Tracker web application',
+  title: 'TimeTracker',
+  description: '시간 추적 및 근무 계획 관리 애플리케이션',
+  manifest: '/manifest.json',
+  themeColor: '#3b82f6',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'TimeTracker',
+  },
+  other: {
+    'mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'default',
+    'apple-mobile-web-app-title': 'TimeTracker',
+  },
 };
 
 export default function RootLayout({
@@ -25,6 +40,7 @@ export default function RootLayout({
             <main className="pt-4">
               {children}
             </main>
+            <PWAInstaller />
           </div>
         </AuthProvider>
       </body>

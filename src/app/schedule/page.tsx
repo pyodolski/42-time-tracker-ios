@@ -32,6 +32,7 @@ export default function SchedulePage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [totalPlannedHours, setTotalPlannedHours] = useState<number>(0);
+  const [totalWorkingHours, setTotalWorkingHours] = useState<number>(0);
   
   // 근무 계획 추가/수정을 위한 상태
   const [isAddingSchedule, setIsAddingSchedule] = useState<boolean>(false);
@@ -139,6 +140,19 @@ export default function SchedulePage() {
         });
         
         setTotalPlannedHours(adjustedPlannedHours);
+        
+        // 현재 월의 총 근무 시간 계산
+        const currentMonthEntries = entries ? entries.filter(entry => entry.date.startsWith(monthStr)) : [];
+        
+        let totalHours = 0;
+        if (currentMonthEntries.length > 0) {
+          currentMonthEntries.forEach((entry) => {
+            if (entry.working_hours) {
+              totalHours += entry.working_hours;
+            }
+          });
+        }
+        setTotalWorkingHours(totalHours);
         
         setIsLoading(false);
       } catch (err: any) {
@@ -524,10 +538,22 @@ export default function SchedulePage() {
       {!isLoading && !error && (
         <div className="bg-white shadow rounded-lg p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">근무 계획 요약</h2>
-          <div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <p className="text-gray-600">이번 달 총 근무시간</p>
+              <p className="text-2xl font-bold">{formatWorkingHours(totalWorkingHours)}</p>
+            </div>
             <div className="bg-green-50 p-4 rounded-lg">
-              <p className="text-gray-600">이번 달 계획 근무 시간</p>
-              <p className="text-2xl font-bold text-green-600">{formatWorkingHours(totalPlannedHours)}</p>
+              <p className="text-gray-600">이번 달 총 계획시간</p>
+              <p className="text-2xl font-bold">{formatWorkingHours(totalPlannedHours)}</p>
+            </div>
+            <div className="bg-purple-50 p-4 rounded-lg">
+              <p className="text-gray-600">남은 시간</p>
+              <p className="text-2xl font-bold">
+                {totalWorkingHours >= 100 
+                  ? '0시간 0분'
+                  : formatWorkingHours(100 - totalWorkingHours)}
+              </p>
             </div>
           </div>
         </div>
