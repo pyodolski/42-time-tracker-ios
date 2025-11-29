@@ -1,9 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar";
+import BottomNav from "@/components/BottomNav";
 import { AuthProvider } from "@/context/AuthContext";
-import PWAInstaller from "@/components/PWAInstaller";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -52,10 +51,9 @@ export default function RootLayout({
     <html lang="ko">
       <body className={inter.className}>
         <AuthProvider>
-          <div className="min-h-screen bg-gray-50">
-            <Navbar />
-            <main className="pt-4">{children}</main>
-            <PWAInstaller />
+          <div className="min-h-screen bg-gray-50 pb-16">
+            <main>{children}</main>
+            <BottomNav />
           </div>
         </AuthProvider>
       </body>

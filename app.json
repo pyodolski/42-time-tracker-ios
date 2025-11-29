@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "TimeTracker",
+    "slug": "time-tracker-web",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./public/icons/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./public/icons/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.timetracker.app",
+      "buildNumber": "1"
+    },
+    "plugins": []
+  }
+}
