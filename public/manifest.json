@@ -9,6 +9,8 @@
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "ko",
+  "prefer_related_applications": false,
+  "related_applications": [],
   "icons": [
     {
       "src": "/icons/icon-72x72.svg",

@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 // 간단한 PNG 아이콘 생성 (base64 인코딩된 작은 아이콘)
-const iconSizes = [72, 96, 128, 144, 152, 192, 384, 512];
+const iconSizes = [72, 96, 128, 144, 152, 180, 192, 384, 512];
 
 // 간단한 TimeTracker 아이콘을 Canvas API 없이 생성
 const generateSimpleIcon = (size) => {
@@ -24,18 +24,25 @@ const generateSimpleIcon = (size) => {
       <polyline points="290,320 305,335 330,310" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     </g>
   </svg>`;
-  
+
   return canvas;
 };
 
 // 각 크기별로 SVG 파일 생성 (PNG 변환은 브라우저나 별도 도구 필요)
-iconSizes.forEach(size => {
+iconSizes.forEach((size) => {
   const svgContent = generateSimpleIcon(size);
   const filename = `public/icons/icon-${size}x${size}.svg`;
   fs.writeFileSync(filename, svgContent);
   console.log(`Generated ${filename}`);
 });
 
-console.log('아이콘 생성 완료! SVG 파일들이 생성되었습니다.');
-console.log('실제 PWA에서는 PNG 파일이 필요하므로, 온라인 SVG to PNG 변환기를 사용하거나');
-console.log('브라우저에서 SVG를 PNG로 변환하는 과정이 필요합니다.');
+// Apple Touch Icon (180x180) 생성
+const appleTouchIcon = generateSimpleIcon(180);
+fs.writeFileSync("public/icons/apple-touch-icon.svg", appleTouchIcon);
+console.log("Generated public/icons/apple-touch-icon.svg");
+
+console.log("아이콘 생성 완료! SVG 파일들이 생성되었습니다.");
+console.log(
+  "실제 PWA에서는 PNG 파일이 필요하므로, 온라인 SVG to PNG 변환기를 사용하거나"
+);
+console.log("브라우저에서 SVG를 PNG로 변환하는 과정이 필요합니다.");

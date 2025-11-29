@@ -1,37 +1,46 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import Navbar from '@/components/Navbar';
-import { AuthProvider } from '@/context/AuthContext';
-import PWAInstaller from '@/components/PWAInstaller';
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import { AuthProvider } from "@/context/AuthContext";
+import PWAInstaller from "@/components/PWAInstaller";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'TimeTracker',
-  description: '시간 추적 및 근무 계획 관리 애플리케이션',
-  manifest: '/manifest.json',
+  title: "TimeTracker",
+  description: "시간 추적 및 근무 계획 관리 애플리케이션",
+  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'default',
-    title: 'TimeTracker',
+    statusBarStyle: "black-translucent",
+    title: "TimeTracker",
+  },
+  icons: {
+    apple: [
+      {
+        url: "/icons/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
   },
   other: {
-    'mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-status-bar-style': 'default',
-    'apple-mobile-web-app-title': 'TimeTracker',
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+    "apple-mobile-web-app-title": "TimeTracker",
   },
 };
 
 export function generateViewport() {
   return {
-    width: 'device-width',
+    width: "device-width",
     initialScale: 1,
     maximumScale: 1,
     userScalable: false,
-    themeColor: '#3b82f6',
-  }
+    themeColor: "#3b82f6",
+  };
 }
 
 export default function RootLayout({
@@ -45,9 +54,7 @@ export default function RootLayout({
         <AuthProvider>
           <div className="min-h-screen bg-gray-50">
             <Navbar />
-            <main className="pt-4">
-              {children}
-            </main>
+            <main className="pt-4">{children}</main>
             <PWAInstaller />
           </div>
         </AuthProvider>

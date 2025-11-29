@@ -2,11 +2,14 @@
 
 시간 추적 및 관리를 위한 웹 애플리케이션입니다. 이 프로젝트는 Next.js, TypeScript, Tailwind CSS를 사용하여 구축되었으며, Supabase를 데이터베이스로 사용하고 Netlify에 배포됩니다.
 
+**📱 iOS PWA 지원** - 아이폰에서 홈 화면에 추가하여 네이티브 앱처럼 사용할 수 있습니다.
+
 ## 주요 기능
 
 - **타이머**: 작업 시간을 실시간으로 추적
 - **대시보드**: 시간 추적 데이터 시각화 및 분석
 - **프로필 관리**: 사용자 설정 및 기본 설정 관리
+- **PWA 지원**: 오프라인 사용 및 홈 화면 설치 가능 (iOS 전용)
 
 ## 기술 스택
 
@@ -25,23 +28,27 @@
 ### 설치
 
 1. 저장소 클론:
+
    ```bash
    git clone <repository-url>
    cd time-tracker-web
    ```
 
 2. 의존성 설치:
+
    ```bash
    npm install
    ```
 
 3. 환경 변수 설정:
    `.env.local.example` 파일을 `.env.local`로 복사하고 Supabase 프로젝트의 URL과 익명 키를 입력합니다.
+
    ```bash
    cp .env.local.example .env.local
    ```
 
 4. 개발 서버 실행:
+
    ```bash
    npm run dev
    ```
@@ -63,6 +70,16 @@
 2. 저장소 연결
 3. 환경 변수 설정 (Supabase URL 및 키)
 4. 배포 트리거
+
+## iOS 배포
+
+아이폰 전용 PWA로 배포됩니다. 자세한 내용은 [iOS 배포 가이드](./ios-deployment-guide.md)를 참조하세요.
+
+### 빠른 시작
+
+1. PNG 아이콘 변환 (SVG → PNG)
+2. 빌드 및 배포: `npm run build`
+3. Safari에서 접속 → 공유 → 홈 화면에 추가
 
 ## 라이선스
 
