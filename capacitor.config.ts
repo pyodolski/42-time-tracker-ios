@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.jupyo.timetracker',
-  appName: 'TimeTracker',
+  appName: '42TimeTracker',
   webDir: 'out',
   server: {
     androidScheme: 'https'
